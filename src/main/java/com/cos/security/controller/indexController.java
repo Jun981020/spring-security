@@ -29,11 +29,11 @@ public class indexController {
         return "index";
     }
     @GetMapping("/login/test")
-    public @ResponseBody String loginTest(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails){
+    public @ResponseBody String loginTest(Authentication authentication, @AuthenticationPrincipal PrincipalDetails userDetails){
         System.out.println("test login ================");
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
         System.out.println("authentication.getPrincipal() = " + principal.getUser());
-        System.out.println("userDetails = " + userDetails.getUsername());
+        System.out.println("userDetails = " + userDetails.getUser());
         return "세션정보 확인";
     }
     @GetMapping("/user")
