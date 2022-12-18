@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.logging.Filter;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
@@ -43,4 +45,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
     }
+    /**
+     * Creates the Spring Security Filter Chain
+     * @return the {@link Filter} that represents the security filter chain
+     * @throws Exception
+     */
+//    @Bean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
+//    public Filter springSecurityFilterChain() throws Exception {
+//        XMLStreamWriterImpl.Element webSecurityConfigurers;
+//        boolean hasConfigurers = webSecurityConfigurers != null
+//                && !webSecurityConfigurers.isEmpty();
+//        if (!hasConfigurers) {
+//            Jlink objectObjectPostProcessor;
+//            WebSecurityConfigurerAdapter adapter = objectObjectPostProcessor
+//                    .postProcess(new WebSecurityConfigurerAdapter() {
+//                    });
+//            webSecurity.apply(adapter);
+//        }
+//        return webSecurity.build();
+//    }
 }
