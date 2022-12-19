@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class indexController {
     public String index(){
         return "index";
     }
-    @GetMapping("/login/test")
+    @GetMapping("/test/login")
     public @ResponseBody String loginTest(Authentication authentication, @AuthenticationPrincipal PrincipalDetails userDetails){
         System.out.println("test login ================");
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
@@ -36,8 +37,17 @@ public class indexController {
         System.out.println("userDetails = " + userDetails.getUser());
         return "세션정보 확인";
     }
+    @GetMapping("/test/oauth/login")
+    public @ResponseBody String testOAuthLogin(Authentication authentication, @AuthenticationPrincipal OAuth2User oauth){
+        System.out.println("test login ================");
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        System.out.println("authentication.getPrincipal() = " + oAuth2User.getAttributes());
+        System.out.println("oauth = " + oauth.getAttributes());
+        return "OAuth 세션정보 확인";
+    }
     @GetMapping("/user")
-    public @ResponseBody String user(){
+    public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        System.out.println("principalDetails.getUser() = " + principalDetails.getUser());
         return "user";
     }
     @GetMapping("/admin")

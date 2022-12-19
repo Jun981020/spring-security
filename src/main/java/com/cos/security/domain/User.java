@@ -1,8 +1,6 @@
 package com.cos.security.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,4 +21,18 @@ public class User {
     private String email;
     private String role;
     private LocalDateTime createDate;
+
+    private String provider;
+    private String providerId;
+
+    @Builder
+    public User(String username, String password, String email, String role, LocalDateTime createDate, String provider, String providerId) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.createDate = createDate;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
 }
