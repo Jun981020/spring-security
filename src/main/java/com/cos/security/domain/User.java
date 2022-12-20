@@ -21,17 +21,16 @@ public class User {
     private String email;
     private String role;
     private LocalDateTime createDate;
-
     private String provider;
     private String providerId;
 
     @Builder
-    public User(String username, String password, String email, String role, LocalDateTime createDate, String provider, String providerId) {
+    public User(String username, String password, String email, String role, String provider, String providerId) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
-        this.createDate = createDate;
+        this.createDate = LocalDateTime.now();
         this.provider = provider;
         this.providerId = providerId;
     }

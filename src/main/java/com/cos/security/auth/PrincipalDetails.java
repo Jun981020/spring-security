@@ -26,8 +26,13 @@ public class PrincipalDetails implements UserDetails , OAuth2User {
     }
 
     @Override
+    public <A> A getAttribute(String name) {
+        return OAuth2User.super.getAttribute(name);
+    }
+
+    @Override
     public Map<String, Object> getAttributes() {
-        return null;
+        return attributes;
     }
 
     @Override
@@ -74,6 +79,6 @@ public class PrincipalDetails implements UserDetails , OAuth2User {
 
     @Override
     public String getName() {
-        return null;
+        return user.getUsername();
     }
 }

@@ -20,12 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PrincipalOauth2UserService principalOauth2UserService;
 
-    @Bean
-    public BCryptPasswordEncoder encodePassword(){
-        return new BCryptPasswordEncoder();
-    }
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
